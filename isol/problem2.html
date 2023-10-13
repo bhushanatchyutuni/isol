@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="problem.css">
+    <style>
+        /* Style for the container */
+        .container {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px;
+            height: 80vh;
+            overflow-y: scroll;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1)
+        } 
+        /* Style for each item in the container */
+        .item {
+            border-bottom: 1px solid #ccc;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="problem">
+        <h2 class="b_problem">
+            Problem statements
+        </h2>
+        <p class="problem_desc">
+           
+        </p>
+        <br>
+    </div>
+    <!-- Infinite scrollable container -->
+    <div class="container" id="scrollContainer" onscroll="checkscroll()">
+        <!-- Content will be dynamically loaded here -->
+    </div>
+    <div class="center_button">
+        <a href="form.html" class="form" target="_blank">
+            Fill the form
+        </a>
+    </div>    
+    <script>
+        const container = document.getElementById("scrollContainer");
+        let pageIndex = 1;
+        // Function to load more content
+        function loadMoreContent() {
+            const itemsPerPage = 1000;
+            for (let i = 0; i < itemsPerPage; i++) {
+                const newItem = document.createElement("div");
+                newItem.className = "item";
+                newItem.textContent = `Item ${pageIndex * itemsPerPage + i}`;
+                container.appendChild(newItem);
+            }
+            pageIndex++;
+        }
+        // Load initial content
+        loadMoreContent();
+        // Detect scroll events and load more content when near the bottom
+        function checkscroll(){
+        if (container.scrollHeight - container.scrollTop <= container.clientHeight+1) {
+                loadMoreContent();
+            }
+        };
+    </script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js">
+    $(document).ready(function () {
+    const scrollContainer = $('#scroll-container');
+    const loadingMessage = $('#loading-message');
+    let isLoading = false;
+});
+</script>
+</body>
+</html>

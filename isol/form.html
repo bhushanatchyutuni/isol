@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <link rel="stylesheet" href="form.css">
+</head>
+<body>
+    <div class="container">
+        <div class="text">
+            Student Form
+        </div>
+        <form action="#">
+           <div class="form-row">
+              <div class="input-data">
+                 <input type="text" required>
+                 <div class="underline"></div>
+                 <label for="">Student Name</label>
+              </div>
+           </div>
+           <div class="form-row">
+            <div class="input-data">
+                <input type="text" required>
+                <div class="underline"></div>
+                <label for="">Problem Id</label>
+             </div>
+           </div>
+           <div class="problem-desc">
+            <label for="problemdesc">Problem Description</label>
+            <div class="input-data">
+                <div class="container-textarea">
+                    <textarea name="" id="problemdesc" cols="80" rows="8" required></textarea>
+                    <div class="word-count">
+                            <sub>Minimum Words:<span id="min"></span></sub> &nbsp; 
+                            <sub>Maximum Words:<span id="max"></span></sub>                        
+                    </div>
+                </div>
+            </div>
+           </div>
+           <br>
+           <label for="fileInput" class="upload">Upload File:</label>
+            <div class="form-row">
+                <div class="input-data choose">
+                    <input type="file" id="fileInput" accept=".pdf, .docx, .jpg" required>
+                    <div class="underline"></div>
+                </div>
+            </div>            
+           <div class="form-row submit-btn center-button" style="margin-top: 20px;">
+            <div class="input-data" style="text-align: center;">
+               <div class="inner"></div>
+               <input type="submit" value="Submit" class="centered-button">
+            </div>
+         </div>
+        </form>
+    </div>
+        <script>
+           const textarea = document.getElementById('problemdesc');
+        const minWords = 50;
+        const maxWords = 150;
+        const min=document.getElementById('min');
+        min.innerHTML=minWords;
+        const max=document.getElementById('max');
+        max.innerHTML=maxWords;
+        textarea.addEventListener('input', function () {
+            const words = textarea.value.trim().split(/\s+/).filter(Boolean).length;
+            if (words < minWords) {
+                textarea.setCustomValidity(`Please enter at least ${minWords} words.`);
+            } else if (words > maxWords) {
+                textarea.setCustomValidity(`Please enter no more than ${maxWords} words.`);
+            } else {
+                textarea.setCustomValidity('');
+            }
+        }); 
+        </script>
+</body>
+</html>
